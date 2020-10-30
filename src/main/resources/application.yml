@@ -1,0 +1,22 @@
+spring:
+  application:
+    name: org-kafka-input
+  main:
+    allow-bean-definition-overriding: true
+  cloud:
+    stream:
+      kafka:
+        binder:
+          brokers: localhost:9092
+        bindings:
+          test-input:
+            consumer:
+              resetOffsets: true
+      bindings:
+        #piec.TOPICO.VERSAO
+        org-test-input:
+          destination: org.test.v1
+          contentType: application/json
+          group: ${spring.application.name}
+server:
+  port: 8081
